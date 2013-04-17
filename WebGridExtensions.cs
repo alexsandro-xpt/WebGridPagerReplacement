@@ -29,6 +29,8 @@ public static class WebGridExtensions
         int numericLinksCount,
         bool explicitlyCalled)
     {
+        //Disable pagination when not enough rows to next page.
+        if (webGrid.Rows.Count <= webGrid.PageCount) return new HelperResult(writer => writer.Write(string.Empty));
         
         int currentPage = webGrid.PageIndex;
         int totalPages = webGrid.PageCount;
